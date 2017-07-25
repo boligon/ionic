@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Receita</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <h2>{{ receita.nome }} </h2>
+        <div class="subtitle">{{ receita.dificuldade }} </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <p>{{ receita.descricao }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let ingrediente of receita.ingredientes; let i=index">
+            {{ ingrediente.nome }}
+            <ion-icon name="remove-circle" (click)="removeIngrediente(i)"></ion-icon>
+            <!--<button ion-button outline color="danger">Remove Ingrediente</button>-->
+
+          </ion-item>
+       </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="receita.ingredientes.length > 0">
+      <ion-col text-center>
+        <button ion-button clear (click)="adicionaIngredientes()">Adiciona ingredientes à lista de compras</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button outline (click)="alteraReceita()">Altera Receita</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button outline color="danger" (click)="removeReceita()">Remove Receita xxx</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
