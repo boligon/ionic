@@ -1,14 +1,23 @@
-import { AngularFireDatabase } from 'angularfire2/database';
-import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from "angularfire2/auth";
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from "angularfire2";
 import { ChatPage } from '../pages/chat/chat';
+
+import { AuthService } from './../services/auth-service';
+import { LoginPage } from './../pages/login/login';
+import { ResetarPasswordPage } from './../pages/resetarpassword/resetarpassword';
+import { CriarContaPage } from './../pages/criarconta/criarconta';
 
 export const firebaseConfig = {
 
@@ -27,23 +36,31 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ChatPage,
+    LoginPage,
+    CriarContaPage,
+    ResetarPasswordPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ChatPage,
+    LoginPage,
+    CriarContaPage,
+    ResetarPasswordPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthService
   ]
 })
 export class AppModule {}
